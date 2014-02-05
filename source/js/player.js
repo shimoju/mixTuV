@@ -1,23 +1,6 @@
-var users;
-var getUsers = function() {
-  $.ajax({
-    url: 'users.json',
-    dataType: 'json',
-    success: function(data) {
-      users = data;
-    },
-    error: function(xhr) {
-      console.log('Error: ' + xhr.status + ' ' + xhr.statusText);
-      setTimeout(function() {
-        console.log('Retry...');
-        getUsers();
-      }, 5000);
-    }
-  });
-};
-getUsers();
-
 var player;
+var users;
+
 var onYouTubeIframeAPIReady = function() {
   player = new YT.Player('player', {
     height: '390',
@@ -31,13 +14,54 @@ var onYouTubeIframeAPIReady = function() {
 };
 
 var onPlayerReady = function(event) {
-  loadVideo();
+  getUsers();
 };
 
 var onPlayerStateChange = function(event) {
   if (event.data == YT.PlayerState.ENDED) {
     loadVideo();
   }
+};
+
+var getUsers = function() {
+  $.ajax({
+    url: 'users.json',
+    dataType: 'json',
+    success: function(data) {
+      users = data;
+      loadVideo();
+    },
+    error: function(xhr) {
+      console.log('Error: ' + xhr.status + ' ' + xhr.statusText);
+      setTimeout(function() {
+        console.log('Retry...');
+        getUsers();
+      }, 5000);
+    }
+  });
+};
+
+var loadVideo = function() {
+  user = shuffle(users)[0];
+  $.ajax({
+    url: uploadsUrl(user['username']),
+    dataType: 'xml',
+    success: function(data) {
+      var url = shuffle(parseVideo(data))[0];
+      player.loadVideoByUrl(url);
+    },
+    error: function(xhr) {
+      console.log('Error: ' + xhr.status + ' ' + xhr.statusText);
+      setTimeout(function() {
+        console.log('Retry...');
+        loadVideo();
+      }, 5000);
+    }
+  });
+};
+
+var uploadsUrl = function(username) {
+  return 'http://gdata.youtube.com/feeds/api/users/' + username + '/uploads'
 };
 
 var parseVideo = function(xml) {
@@ -60,27 +84,4 @@ var shuffle = function(array) {
     array[i] = t;
   }
   return array;
-};
-
-var uploadsUrl = function(username) {
-  return 'http://gdata.youtube.com/feeds/api/users/' + username + '/uploads'
-};
-
-var loadVideo = function() {
-  user = shuffle(users)[0];
-  $.ajax({
-    url: uploadsUrl(user['username']),
-    dataType: 'xml',
-    success: function(data) {
-      var url = shuffle(parseVideo(data))[0];
-      player.loadVideoByUrl(url);
-    },
-    error: function(xhr) {
-      console.log('Error: ' + xhr.status + ' ' + xhr.statusText);
-      setTimeout(function() {
-        console.log('Retry...');
-        loadVideo();
-      }, 5000);
-    }
-  });
 };
