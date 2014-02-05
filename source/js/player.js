@@ -1,3 +1,12 @@
+var users = [
+  {username: "08yakari"},
+  {username: "fuwacina"},
+  {username: "hachiojip"},
+  {username: "kzlivetune"},
+  {username: "MitchieMTV"},
+  {username: "tkomine"}
+];
+
 var player;
 
 function onYouTubeIframeAPIReady() {
@@ -44,9 +53,14 @@ var shuffle = function(array) {
   return array;
 };
 
+var uploadsUrl = function(username) {
+  return 'http://gdata.youtube.com/feeds/api/users/' + username + '/uploads'
+};
+
 var loadVideo = function() {
+  user = shuffle(users)[0];
   $.ajax({
-    url: 'http://gdata.youtube.com/feeds/api/users/kzlivetune/uploads',
+    url: uploadsUrl(user['username']),
     dataType: 'xml',
     success: function(data) {
       var url = shuffle(parseVideo(data))[0];
