@@ -73,8 +73,6 @@ var loadVideo = function() {
     dataType: 'xml',
     success: function(data) {
       var url = shuffle(parseVideo(data))[0];
-      console.log(parseVideo(data));
-      console.log(url);
       player.loadVideoByUrl(url);
     },
     error: function(xhr) {
