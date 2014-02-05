@@ -18,8 +18,7 @@ var getUsers = function() {
 getUsers();
 
 var player;
-
-function onYouTubeIframeAPIReady() {
+var onYouTubeIframeAPIReady = function() {
   player = new YT.Player('player', {
     height: '390',
     width: '640',
@@ -29,17 +28,17 @@ function onYouTubeIframeAPIReady() {
       'onStateChange': onPlayerStateChange
     }
   });
-}
+};
 
-function onPlayerReady(event) {
+var onPlayerReady = function(event) {
   loadVideo();
-}
+};
 
-function onPlayerStateChange(event) {
+var onPlayerStateChange = function(event) {
   if (event.data == YT.PlayerState.ENDED) {
     loadVideo();
   }
-}
+};
 
 var parseVideo = function(xml) {
   // Or 'content[yt\\:format=5]'
