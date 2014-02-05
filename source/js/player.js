@@ -1,11 +1,21 @@
-var users = [
-  {username: "08yakari"},
-  {username: "fuwacina"},
-  {username: "hachiojip"},
-  {username: "kzlivetune"},
-  {username: "MitchieMTV"},
-  {username: "tkomine"}
-];
+var users;
+var getUsers = function() {
+  $.ajax({
+    url: 'users.json',
+    dataType: 'json',
+    success: function(data) {
+      users = data;
+    },
+    error: function(xhr) {
+      console.log('Error: ' + xhr.status + ' ' + xhr.statusText);
+      setTimeout(function() {
+        console.log('Retry...');
+        getUsers();
+      }, 5000);
+    }
+  });
+};
+getUsers();
 
 var player;
 
