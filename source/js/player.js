@@ -47,11 +47,12 @@ var getUsers = function() {
 };
 
 var loadVideo = function() {
-  user = shuffle(users)[0];
+  var user = shuffle(users)[0];
+  var uploads = uploadsUrl(user['youtube']);
   console.log('Selected user: ' + user['name']);
-  console.log('Loading uploads list...');
+  console.log('Loading uploads list... => ' + uploads);
   $.ajax({
-    url: uploadsUrl(user['youtube']),
+    url: uploads,
     dataType: 'xml',
     success: function(data) {
       console.log('Done.');
