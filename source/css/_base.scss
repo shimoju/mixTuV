@@ -3,10 +3,23 @@
 body {
   background: $body-bg;
   color: $text-color;
-  padding-top: $navbar-height;
+  padding-top: $navbar-height + $player-height + $player-padding * 2;
+}
+
+h2 {
+  margin-top: 0;
 }
 
 .container {
   margin: 0 auto;
   width: 640px;
+}
+
+.player {
+  left: 0;
+  // padding-bottom = -7px
+  padding: $player-padding 0 $player-padding - 7px;
+  position: fixed;
+  top: $navbar-height;
+  width: 100%;
 }
