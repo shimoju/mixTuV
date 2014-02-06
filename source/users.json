@@ -1,8 +1,8 @@
 [
-  {"username": "08yakari"},
-  {"username": "kzlivetune"},
-  {"username": "hachiojip"},
-  {"username": "MitchieMTV"},
-  {"username": "tkomine"},
-  {"username": "fuwacina"}
+  {"name": "ハチ (米津 玄師)", "youtube": "08yakari"},
+  {"name": "kz (livetune)", "youtube": "kzlivetune"},
+  {"name": "八王子P", "youtube": "hachiojip"},
+  {"name": "Mitchie M", "youtube": "MitchieMTV"},
+  {"name": "うたたP (t.Komine)", "youtube": "tkomine"},
+  {"name": "OSTER project", "youtube": "fuwacina"}
 ]

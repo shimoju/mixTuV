@@ -44,7 +44,7 @@ var getUsers = function() {
 var loadVideo = function() {
   user = shuffle(users)[0];
   $.ajax({
-    url: uploadsUrl(user['username']),
+    url: uploadsUrl(user['youtube']),
     dataType: 'xml',
     success: function(data) {
       var url = shuffle(parseVideo(data))[0];
