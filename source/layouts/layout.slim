@@ -11,7 +11,12 @@ html lang="en"
     = stylesheet_link_tag "main", media: "all"
 
   body class=page_classes
-    nav role="navigation"
+    nav.pure-menu.pure-menu-open.pure-menu-horizontal.pure-menu-fixed role="navigation"
+      = link_to "mixTuV", ".", class: "pure-menu-heading"
+      ul
+        li.pure-menu-selected= link_to "Home", "#"
+        li= link_to "About", "#about"
+        li= link_to "Contact", "#contact"
 
     header role="banner"
       h1= current_page.data.title
