@@ -1,7 +1,7 @@
 // Utility
 
 var shuffle = function(array) {
-  // Fisher–Yates Shuffle
+  // Fisher-Yates Shuffle
   // http://bost.ocks.org/mike/shuffle/
   var m = array.length, t, i;
   while (m) {
