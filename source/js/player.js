@@ -56,10 +56,10 @@ var loadVideo = function() {
     dataType: 'xml',
     success: function(data) {
       console.log('Done.');
-      var url = shuffle(parseVideo(data))[0];
-      console.log('Selected video: ' + url);
-      console.log('Loading video... => ' + url);
-      player.loadVideoByUrl(url);
+      var video = parseVideo(shuffle(extractEntries(data))[0]);
+      console.log('Selected video: ' + video.title);
+      console.log('Loading video... => ' + video.url);
+      player.loadVideoByUrl(video.url);
     },
     error: function(xhr) {
       console.log('Error: ' + xhr.status + ' ' + xhr.statusText);
@@ -75,13 +75,19 @@ var uploadsUrl = function(username) {
   return 'http://gdata.youtube.com/feeds/api/users/' + username + '/uploads'
 };
 
+var extractEntries = function(xml) {
+  return $(xml).find('entry');
+};
+
 var parseVideo = function(xml) {
-  // Or 'content[yt\\:format=5]'
-  return $(xml).find('content').map(function() {
-    if ($(this).attr('yt:format') == 5) {
-      return $(this).attr('url');
-    }
-  });
+  entry = $(xml);
+  var title = entry.find('title')[0];
+  var content = entry.find('content[yt\\:format=5]')[0];
+
+  return {
+    title: $(title).text(),
+    url: $(content).attr('url'),
+  };
 };
 
 var shuffle = function(array) {
