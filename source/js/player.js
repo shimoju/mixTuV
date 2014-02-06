@@ -14,20 +14,24 @@ var onYouTubeIframeAPIReady = function() {
 };
 
 var onPlayerReady = function(event) {
+  console.log('YouTube Player ready.');
   getUsers();
 };
 
 var onPlayerStateChange = function(event) {
   if (event.data == YT.PlayerState.ENDED) {
+    console.log('Play ended. Go next video.');
     loadVideo();
   }
 };
 
 var getUsers = function() {
+  console.log('Loading users list...');
   $.ajax({
     url: 'users.json',
     dataType: 'json',
     success: function(data) {
+      console.log('Done.');
       users = data;
       loadVideo();
     },
@@ -43,11 +47,16 @@ var getUsers = function() {
 
 var loadVideo = function() {
   user = shuffle(users)[0];
+  console.log('Selected user: ' + user['name']);
+  console.log('Loading uploads list...');
   $.ajax({
     url: uploadsUrl(user['youtube']),
     dataType: 'xml',
     success: function(data) {
+      console.log('Done.');
       var url = shuffle(parseVideo(data))[0];
+      console.log('Selected video: ' + url);
+      console.log('Loading video... => ' + url);
       player.loadVideoByUrl(url);
     },
     error: function(xhr) {
