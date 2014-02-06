@@ -1,5 +1,6 @@
 var player;
 var users;
+var usersUrl = 'users.json';
 
 var onYouTubeIframeAPIReady = function() {
   player = new YT.Player('player', {
@@ -26,9 +27,9 @@ var onPlayerStateChange = function(event) {
 };
 
 var getUsers = function() {
-  console.log('Loading users list...');
+  console.log('Loading users list... => ' + usersUrl);
   $.ajax({
-    url: 'users.json',
+    url: usersUrl,
     dataType: 'json',
     success: function(data) {
       console.log('Done.');
