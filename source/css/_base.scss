@@ -1,5 +1,7 @@
 // Base
 
 body {
+  background: $body-bg;
+  color: $text-color;
   padding-top: $navbar-height;
 }
