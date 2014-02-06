@@ -5,3 +5,8 @@ body {
   color: $text-color;
   padding-top: $navbar-height;
 }
+
+.container {
+  margin: 0 auto;
+  width: 640px;
+}
