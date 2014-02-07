@@ -84,7 +84,7 @@ end
 # middleman-deploy configuration
 activate :deploy do |deploy|
   # Automatically run `middleman build` during `middleman deploy`
-  # deploy.build_before = true
+  deploy.build_before = true
 
   # rsync, ftp, sftp, or git
   deploy.method = :git
