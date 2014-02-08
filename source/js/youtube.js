@@ -19,3 +19,23 @@ var parseVideo = function(xml) {
     url: {content: $(mediaContent).attr('url'), player: $(mediaPlayer).attr('url')}
   };
 };
+
+var videoId = function(url) {
+  var urlObj = $('<a>', {href: url})[0];
+
+  // Player URL: http://www.youtube.com/watch?v=VIDEOID
+  if (/^\/watch/.test(urlObj.pathname)) {
+    var query = urlObj.search.substr(1).split('&');
+    var id;
+    $.each(query, function(i) {
+      if (/^v=/.test(this)) {
+        id = this.split('=')[1];
+        return false;
+      }
+    });
+    return id;
+  // Content URL: http://www.youtube.com/v/VIDEOID
+  } else if (/^\/v\//.test(urlObj.pathname)) {
+    return urlObj.pathname.split('/')[2];
+  }
+};
