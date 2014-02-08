@@ -62,6 +62,7 @@ var loadVideo = function() {
       console.log('Selected video: ' + video.title);
       console.log('Loading video... => ' + video.url);
       player.loadVideoByUrl(video.url);
+      ga('send', 'event', 'video', 'play');
     },
     error: function(xhr) {
       console.log('Error: ' + xhr.status + ' ' + xhr.statusText);
