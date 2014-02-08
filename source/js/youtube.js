@@ -9,12 +9,13 @@ var extractEntries = function(xml) {
 };
 
 var parseVideo = function(xml) {
-  entry = $(xml);
+  var entry = $(xml);
   var title = entry.find('title')[0];
-  var content = entry.find('content[yt\\:format=5]')[0];
+  var mediaContent = entry.find('content[yt\\:format=5]')[0];
+  var mediaPlayer = entry.find('player')[0];
 
   return {
     title: $(title).text(),
-    url: $(content).attr('url'),
+    url: {content: $(mediaContent).attr('url'), player: $(mediaPlayer).attr('url')}
   };
 };

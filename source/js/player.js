@@ -60,8 +60,8 @@ var loadVideo = function() {
       console.log('Done.');
       var video = parseVideo(shuffle(extractEntries(data))[0]);
       console.log('Selected video: ' + video.title);
-      console.log('Loading video... => ' + video.url);
-      player.loadVideoByUrl(video.url);
+      console.log('Loading video... => ' + video.url.content);
+      player.loadVideoByUrl(video.url.content);
       ga('send', 'event', 'video', 'play');
     },
     error: function(xhr) {
