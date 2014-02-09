@@ -6,7 +6,11 @@ $player-color: #1b1b1b;
 $player-button-color: #757575;
 
 $navbar-height: 39px;
-$player-height: 390px;
+
+$player-width-sm: 640px;
+$player-height-sm: ceil($player-width-sm * 0.5625) + 30px;
+$player-width-lg: 800px;
+$player-height-lg: ceil($player-width-lg * 0.5625) + 30px;
 $player-padding: 10px;
 
 // Media queries breakpoints

@@ -2,6 +2,9 @@
 
 // width >= tablet
 @media (min-width: $screen-sm-min) {
+  .container {
+    width: $player-width-sm;
+  }
 }
 
 // width >= desktop
@@ -10,4 +13,7 @@
 
 // width >= wide desktop
 @media (min-width: $screen-lg-min) {
+  .container {
+    width: $player-width-lg;
+  }
 }
