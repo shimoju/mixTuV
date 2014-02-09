@@ -1,0 +1,10 @@
+// Player
+
+.player {
+  left: 0;
+  // padding-bottom = -7px
+  padding: $player-padding 0 $player-padding - 7px;
+  position: fixed;
+  top: $navbar-height;
+  width: 100%;
+}
