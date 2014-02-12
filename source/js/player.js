@@ -36,7 +36,7 @@ var getUsers = function() {
     success: function(data) {
       console.log('Done.');
       users = data;
-      loadVideo();
+      loadVideo(true);
     },
     error: function(xhr) {
       console.log('Error: ' + xhr.status + ' ' + xhr.statusText);
@@ -48,7 +48,8 @@ var getUsers = function() {
   });
 };
 
-var loadVideo = function() {
+var loadVideo = function(cue) {
+  cue = !!cue;
   var user = shuffle(users)[0];
   var uploads = uploadsUrl(user['youtube']);
   console.log('Selected user: ' + user['name']);
@@ -61,7 +62,11 @@ var loadVideo = function() {
       var video = parseVideo(shuffle(extractEntries(data))[0]);
       console.log('Selected video: ' + video.title);
       console.log('Loading video... => ' + video.url.content);
-      player.loadVideoByUrl(video.url.content);
+      if (cue == true) {
+        player.cueVideoByUrl(video.url.content);
+      } else {
+        player.loadVideoByUrl(video.url.content);
+      }
       ga('send', 'event', 'video', 'play');
     },
     error: function(xhr) {
