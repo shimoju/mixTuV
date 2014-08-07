@@ -7,7 +7,7 @@ html lang="en"
     title= current_page.data.title || ""
     meta name="viewport" content="width=device-width, initial-scale=1"
 
-    = stylesheet_link_tag "main", media: "all"
+    = stylesheet_link_tag "main", type: false
 
   body class=page_classes
     header role="banner"
@@ -33,7 +33,7 @@ html lang="en"
     /! JavaScript
     / YouTube IFrame Player API
     script var tag = document.createElement('script');tag.src = "https://www.youtube.com/iframe_api";var firstScriptTag = document.getElementsByTagName('script')[0];firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    = javascript_include_tag "main"
+    = javascript_include_tag "main", type: false
 
     / Google Analytics
     javascript:
