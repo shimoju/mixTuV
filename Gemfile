@@ -20,3 +20,4 @@ gem 'slim', '~> 2.0.3'
 
 # Assets
 gem 'rails-assets-jquery', require: false
+gem 'rails-assets-pure', require: false
