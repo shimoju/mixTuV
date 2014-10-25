@@ -1,7 +1,7 @@
 // YouTube
 
 var uploadsUrl = function(username) {
-  return 'http://gdata.youtube.com/feeds/api/users/' + username + '/uploads'
+  return 'https://gdata.youtube.com/feeds/api/users/' + username + '/uploads'
 };
 
 var extractEntries = function(xml) {
